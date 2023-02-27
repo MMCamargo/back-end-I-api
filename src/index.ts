@@ -1,4 +1,5 @@
 import { usersRouter } from './routes';
+import pgHelper from './database/pgHelper';
 import express from 'express';
 import cors from 'cors';
 
@@ -9,4 +10,9 @@ api.use(express.json(), cors());
 
 api.use(usersRouter);
 
-api.listen(port, () => console.log('ok'));
+pgHelper
+	.connect()
+	.then(() => {
+		api.listen(port, () => console.log('ok'));
+	})
+	.catch((error) => console.log(error));

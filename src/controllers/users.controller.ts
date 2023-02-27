@@ -1,12 +1,10 @@
-import { UsersRepository } from '../repositories';
+import { usersRepository } from '../repositories';
 import { IDefaultResponse } from '../common/models';
 import { Request, Response } from 'express';
 
 class UsersController {
 	async post(req: Request, res: Response) {
 		const { firstName, lastName, email, password } = req.body;
-
-		const usersRepository = new UsersRepository();
 
 		const newUser = await usersRepository.postUser(
 			firstName,
@@ -23,4 +21,6 @@ class UsersController {
 	}
 }
 
-export default UsersController;
+const usersController = new UsersController();
+
+export default usersController;

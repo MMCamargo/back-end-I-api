@@ -1,10 +1,8 @@
-import { UsersController } from '../../controllers';
 import { checkMissingData, checkUniqueEmail } from './utils/middlewares';
+import { usersController } from '../../controllers';
 import { Router } from 'express';
 
 const usersRouter = Router();
-
-const usersController = new UsersController();
 
 usersRouter.post(
 	'/user',
