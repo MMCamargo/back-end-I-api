@@ -8,10 +8,11 @@ import {
 	OneToMany,
 	JoinColumn,
 	BeforeInsert,
+	BeforeUpdate,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
-@Entity({ name: 'user' })
+@Entity({ name: 'users' })
 class UserEntity {
 	@PrimaryColumn()
 	uid!: string;
@@ -41,6 +42,12 @@ class UserEntity {
 	@BeforeInsert()
 	beforeInsert() {
 		this.uid = uuidv4();
+		this.createdAt = new Date();
+	}
+
+	@BeforeUpdate()
+	beforeUpdate() {
+		this.updatedAt = new Date();
 	}
 }
 

@@ -1,10 +1,15 @@
+import { usersRepository } from '../../../../repositories';
 import { IDefaultResponse } from '../../../../common/models';
 import { Request, Response, NextFunction } from 'express';
 
-const checkUniqueEmail = (req: Request, res: Response, next: NextFunction) => {
+const checkUniqueEmail = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const { email } = req.body;
 
-	const someEqualEmail = false;
+	const someEqualEmail = await usersRepository.verifyUniqueEmail(email);
 
 	if (someEqualEmail) {
 		return res.status(400).json({

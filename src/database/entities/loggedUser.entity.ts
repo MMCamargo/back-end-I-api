@@ -7,9 +7,11 @@ import {
 	UpdateDateColumn,
 	OneToOne,
 	JoinColumn,
+	BeforeInsert,
 } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
-@Entity({ name: 'logged_user' })
+@Entity({ name: 'logged_users' })
 class LoggedUserEntity {
 	@PrimaryColumn()
 	uid!: string;
@@ -29,6 +31,12 @@ class LoggedUserEntity {
 	@OneToOne(() => UserEntity, (fk) => fk.uid)
 	@JoinColumn({ name: 'user_uid', referencedColumnName: 'uid' })
 	user!: UserEntity;
+
+	@BeforeInsert()
+	beforeInsert() {
+		this.uid = uuidv4();
+		this.createdAt = new Date();
+	}
 }
 
 export default LoggedUserEntity;

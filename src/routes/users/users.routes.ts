@@ -6,7 +6,8 @@ const usersRouter = Router();
 
 usersRouter.post(
 	'/user',
-	[checkMissingData, checkUniqueEmail],
+	checkMissingData,
+	checkUniqueEmail,
 	usersController.post
 );
 

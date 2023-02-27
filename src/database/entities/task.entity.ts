@@ -8,10 +8,11 @@ import {
 	ManyToOne,
 	JoinColumn,
 	BeforeInsert,
+	BeforeUpdate,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
-@Entity({ name: 'task' })
+@Entity({ name: 'tasks' })
 class TaskEntity {
 	@PrimaryColumn()
 	uid!: string;
@@ -41,6 +42,13 @@ class TaskEntity {
 	@BeforeInsert()
 	beforeInsert() {
 		this.uid = uuidv4();
+		this.createdAt = new Date();
+	}
+
+	@BeforeUpdate()
+	beforeUpdate() {
+		console.log('Vai Atualizar');
+		this.updatedAt = new Date();
 	}
 }
 

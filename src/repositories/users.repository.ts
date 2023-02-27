@@ -19,6 +19,16 @@ class UsersRepository {
 
 		return await manager.save(newUser);
 	}
+
+	async verifyUniqueEmail(email: string): Promise<boolean> {
+		const manager = pgHelper.client.manager;
+
+		const someEqualEmail = await manager.findOne(UserEntity, {
+			where: { email },
+		});
+
+		return !!someEqualEmail;
+	}
 }
 
 const usersRepository = new UsersRepository();
