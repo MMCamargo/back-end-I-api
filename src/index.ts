@@ -1,4 +1,4 @@
-import { usersRouter, tasksRouter } from './routes';
+import { usersRouter, tasksRouter, authRouter } from './routes';
 import pgHelper from './database/pgHelper';
 import express from 'express';
 import cors from 'cors';
@@ -10,6 +10,7 @@ api.use(express.json(), cors());
 
 api.use(usersRouter);
 api.use(tasksRouter);
+api.use(authRouter);
 
 pgHelper
 	.connect()

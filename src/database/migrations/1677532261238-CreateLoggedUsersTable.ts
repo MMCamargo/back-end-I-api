@@ -22,7 +22,6 @@ class CreateLoggedUsersTable1677532261238 implements MigrationInterface {
 						name: 'user_uid',
 						type: 'uuid',
 						isNullable: false,
-						isUnique: true,
 					},
 					{
 						name: 'first_name',

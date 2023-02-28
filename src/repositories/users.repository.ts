@@ -45,6 +45,22 @@ class UsersRepository {
 
 		return !!someEqualEmail;
 	}
+
+	async verifyUserCredentials(
+		email: string,
+		password: string
+	): Promise<UserEntity | null> {
+		const manager = pgHelper.client.manager;
+
+		const user = await manager.findOne(UserEntity, {
+			where: {
+				email,
+				password,
+			},
+		});
+
+		return user;
+	}
 }
 
 const usersRepository = new UsersRepository();
