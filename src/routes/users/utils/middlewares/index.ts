@@ -1,4 +1,4 @@
-import checkMissingData from './checkMissingData';
+import checkMissingUserData from './checkMissingUserData';
 import checkUniqueEmail from './checkUniqueEmail';
 
-export { checkMissingData, checkUniqueEmail };
+export { checkMissingUserData, checkUniqueEmail };

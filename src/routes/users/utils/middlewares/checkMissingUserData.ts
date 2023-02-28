@@ -1,7 +1,11 @@
 import { IDefaultResponse } from '../../../../common/models';
 import { Request, Response, NextFunction } from 'express';
 
-const checkMissingData = (req: Request, res: Response, next: NextFunction) => {
+const checkMissingUserData = (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const { firstName, lastName, email, password } = req.body;
 
 	if (!firstName || !lastName || !email || !password) {
@@ -14,4 +18,4 @@ const checkMissingData = (req: Request, res: Response, next: NextFunction) => {
 	next();
 };
 
-export default checkMissingData;
+export default checkMissingUserData;

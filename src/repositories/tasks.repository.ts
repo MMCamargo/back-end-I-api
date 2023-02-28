@@ -33,6 +33,16 @@ class TasksRepository {
 
 		return task;
 	}
+
+	async getUserTasks(userUid: string): Promise<TaskEntity[]> {
+		const manager = pgHelper.client.manager;
+
+		const userTasks = await manager.findBy(TaskEntity, {
+			userUid,
+		});
+
+		return userTasks;
+	}
 }
 
 const tasksRepository = new TasksRepository();

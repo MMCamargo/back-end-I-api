@@ -1,4 +1,4 @@
-import { usersRouter } from './routes';
+import { usersRouter, tasksRouter } from './routes';
 import pgHelper from './database/pgHelper';
 import express from 'express';
 import cors from 'cors';
@@ -9,6 +9,7 @@ const port = process.env.PORT;
 api.use(express.json(), cors());
 
 api.use(usersRouter);
+api.use(tasksRouter);
 
 pgHelper
 	.connect()

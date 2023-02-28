@@ -22,7 +22,7 @@ class CreateTasksTable1677532160680 implements MigrationInterface {
 						name: 'user_uid',
 						type: 'uuid',
 						isNullable: false,
-						isUnique: true,
+						isUnique: false,
 					},
 					{
 						name: 'is_archived',

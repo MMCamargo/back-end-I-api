@@ -33,6 +33,17 @@ class TasksController {
 			data: task,
 		});
 	}
+
+	async getUserTasks(req: Request, res: Response) {
+		const { userUid } = req.params;
+
+		const userTasks = await tasksRepository.getUserTasks(userUid);
+
+		return res.status(200).json({
+			success: true,
+			data: userTasks,
+		});
+	}
 }
 
 const tasksController = new TasksController();

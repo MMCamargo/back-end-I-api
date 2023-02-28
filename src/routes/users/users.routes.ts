@@ -1,4 +1,4 @@
-import { checkMissingData, checkUniqueEmail } from './utils/middlewares';
+import { checkMissingUserData, checkUniqueEmail } from './utils/middlewares';
 import { usersController } from '../../controllers';
 import { Router } from 'express';
 
@@ -6,7 +6,7 @@ const usersRouter = Router();
 
 usersRouter.post(
 	'/user',
-	[checkMissingData, checkUniqueEmail],
+	[checkMissingUserData, checkUniqueEmail],
 	usersController.post
 );
 

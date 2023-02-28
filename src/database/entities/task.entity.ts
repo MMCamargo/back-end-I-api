@@ -42,12 +42,12 @@ class TaskEntity {
 	@BeforeInsert()
 	beforeInsert() {
 		this.uid = uuidv4();
+		this.isArchived = false;
 		this.createdAt = new Date();
 	}
 
 	@BeforeUpdate()
 	beforeUpdate() {
-		console.log('Vai Atualizar');
 		this.updatedAt = new Date();
 	}
 }
