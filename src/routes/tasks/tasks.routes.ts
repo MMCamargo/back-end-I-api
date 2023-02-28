@@ -1,4 +1,7 @@
-import { checkMissingTaskData } from './utils/middlewares';
+import {
+	checkMissingTaskData,
+	checkTaskEditableData,
+} from './utils/middlewares';
 import { tasksController } from '../../controllers';
 import { Router } from 'express';
 
@@ -13,5 +16,13 @@ tasksRouter.get('/task/:uid', tasksController.getOne);
 tasksRouter.get('/tasks/:userUid', tasksController.getUserTasks);
 
 tasksRouter.get('/tasks/search/:userUid', tasksController.searchTasks);
+
+tasksRouter.put(
+	'/task/edit/:uid',
+	[checkTaskEditableData],
+	tasksController.updateTask
+);
+
+tasksRouter.put('/task/archiving/:uid', tasksController.toggleTaskArchiving);
 
 export default tasksRouter;

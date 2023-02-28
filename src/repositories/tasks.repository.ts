@@ -59,6 +59,26 @@ class TasksRepository {
 
 		return [...searchTitle, ...searchContent];
 	}
+
+	updateTask(uid: string, title: string, content: string): void {
+		const manager = pgHelper.client.manager;
+
+		if (title) manager.update(TaskEntity, { uid }, { title: title });
+		if (content) manager.update(TaskEntity, { uid }, { content: content });
+	}
+
+	async toggleIsArchived(uid: string) {
+		const manager = pgHelper.client.manager;
+
+		const task = await this.getOne(uid);
+
+		if (task)
+			manager.update(
+				TaskEntity,
+				{ uid: task.uid },
+				{ isArchived: !task.isArchived }
+			);
+	}
 }
 
 const tasksRepository = new TasksRepository();

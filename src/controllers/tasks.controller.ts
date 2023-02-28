@@ -62,6 +62,29 @@ class TasksController {
 			data: filteredTasks,
 		});
 	}
+
+	async updateTask(req: Request, res: Response) {
+		const { uid } = req.params;
+		const { title, content } = req.body;
+
+		tasksRepository.updateTask(uid, title ?? '', content ?? '');
+
+		return res.status(200).json({
+			success: true,
+			message: 'Task updated.',
+		} as IDefaultResponse);
+	}
+
+	async toggleTaskArchiving(req: Request, res: Response) {
+		const { uid } = req.params;
+
+		tasksRepository.toggleIsArchived(uid);
+
+		return res.status(200).json({
+			success: true,
+			message: 'Task updated.',
+		} as IDefaultResponse);
+	}
 }
 
 const tasksController = new TasksController();
