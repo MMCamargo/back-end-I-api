@@ -6,9 +6,12 @@ const usersRouter = Router();
 
 usersRouter.post(
 	'/user',
-	checkMissingData,
-	checkUniqueEmail,
+	[checkMissingData, checkUniqueEmail],
 	usersController.post
 );
+
+usersRouter.get('/users', usersController.getAll);
+
+usersRouter.get('/user/:uid', usersController.getOne);
 
 export default usersRouter;

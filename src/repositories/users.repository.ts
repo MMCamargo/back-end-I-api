@@ -20,6 +20,22 @@ class UsersRepository {
 		return await manager.save(newUser);
 	}
 
+	async getAll(): Promise<UserEntity[]> {
+		const manager = pgHelper.client.manager;
+
+		const users = await manager.find(UserEntity);
+
+		return users;
+	}
+
+	async getOne(uid: string): Promise<UserEntity | null> {
+		const manager = pgHelper.client.manager;
+
+		const user = await manager.findOne(UserEntity, { where: { uid } });
+
+		return user;
+	}
+
 	async verifyUniqueEmail(email: string): Promise<boolean> {
 		const manager = pgHelper.client.manager;
 

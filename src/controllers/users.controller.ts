@@ -15,9 +15,28 @@ class UsersController {
 
 		return res.status(201).json({
 			success: true,
-			message: 'User created.',
 			data: newUser,
 		} as IDefaultResponse);
+	}
+
+	async getAll(req: Request, res: Response) {
+		const users = await usersRepository.getAll();
+
+		return res.status(200).json({
+			success: true,
+			data: users,
+		});
+	}
+
+	async getOne(req: Request, res: Response) {
+		const { uid } = req.params;
+
+		const user = await usersRepository.getOne(uid);
+
+		return res.status(200).json({
+			success: true,
+			data: user,
+		});
 	}
 }
 
