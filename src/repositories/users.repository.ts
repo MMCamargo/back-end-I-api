@@ -2,7 +2,7 @@ import { UserEntity } from '../database/entities';
 import pgHelper from '../database/pgHelper';
 
 class UsersRepository {
-	async postUser(
+	async create(
 		firstName: string,
 		lastName: string,
 		email: string,

@@ -1,45 +1,40 @@
-import { usersRepository } from '../repositories';
+import { tasksRepository } from '../repositories';
 import { IDefaultResponse } from '../common/models';
 import { Request, Response } from 'express';
 
-class UsersController {
+class TasksController {
 	async post(req: Request, res: Response) {
-		const { firstName, lastName, email, password } = req.body;
+		const { userUid, title, content } = req.body;
 
-		const newUser = await usersRepository.create(
-			firstName,
-			lastName,
-			email,
-			password
-		);
+		const newTask = await tasksRepository.create(userUid, title, content);
 
 		return res.status(201).json({
 			success: true,
-			data: newUser,
+			data: newTask,
 		} as IDefaultResponse);
 	}
 
 	async getAll(req: Request, res: Response) {
-		const users = await usersRepository.getAll();
+		const tasks = await tasksRepository.getAll();
 
 		return res.status(200).json({
 			success: true,
-			data: users,
+			data: tasks,
 		});
 	}
 
 	async getOne(req: Request, res: Response) {
 		const { uid } = req.params;
 
-		const user = await usersRepository.getOne(uid);
+		const task = await tasksRepository.getOne(uid);
 
 		return res.status(200).json({
 			success: true,
-			data: user,
+			data: task,
 		});
 	}
 }
 
-const usersController = new UsersController();
+const tasksController = new TasksController();
 
-export default usersController;
+export default tasksController;
