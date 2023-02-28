@@ -27,7 +27,7 @@ class CreateTasksTable1677532160680 implements MigrationInterface {
 					{
 						name: 'is_archived',
 						type: 'boolean',
-						isNullable: false,
+						default: false,
 					},
 					{
 						name: 'title',

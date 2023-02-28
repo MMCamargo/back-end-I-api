@@ -1,5 +1,6 @@
 import { tasksRepository } from '../repositories';
 import { IDefaultResponse } from '../common/models';
+import { mergeObjectsWithSameKey } from './utils/functions';
 import { Request, Response } from 'express';
 
 class TasksController {
@@ -42,6 +43,23 @@ class TasksController {
 		return res.status(200).json({
 			success: true,
 			data: userTasks,
+		});
+	}
+
+	async searchTasks(req: Request, res: Response) {
+		const { userUid } = req.params;
+		const { text } = req.query;
+
+		const userTasks = await tasksRepository.searchTasks(
+			userUid,
+			text!.toString()
+		);
+
+		const filteredTasks = mergeObjectsWithSameKey(userTasks, 'uid');
+
+		return res.status(200).json({
+			success: true,
+			data: filteredTasks,
 		});
 	}
 }

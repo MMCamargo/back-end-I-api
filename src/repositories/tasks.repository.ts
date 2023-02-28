@@ -43,6 +43,22 @@ class TasksRepository {
 
 		return userTasks;
 	}
+
+	async searchTasks(userUid: string, text: string): Promise<TaskEntity[]> {
+		const manager = pgHelper.client.manager;
+
+		const searchTitle = await manager.findBy(TaskEntity, {
+			userUid,
+			title: text,
+		});
+
+		const searchContent = await manager.findBy(TaskEntity, {
+			userUid,
+			content: text,
+		});
+
+		return [...searchTitle, ...searchContent];
+	}
 }
 
 const tasksRepository = new TasksRepository();

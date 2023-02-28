@@ -12,6 +12,6 @@ tasksRouter.get('/task/:uid', tasksController.getOne);
 
 tasksRouter.get('/tasks/:userUid', tasksController.getUserTasks);
 
-tasksRouter.get('/tasks/search/:userUid', tasksController.getUserTasks);
+tasksRouter.get('/tasks/search/:userUid', tasksController.searchTasks);
 
 export default tasksRouter;
