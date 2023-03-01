@@ -85,6 +85,17 @@ class TasksController {
 			message: 'Task updated.',
 		} as IDefaultResponse);
 	}
+
+	async delete(req: Request, res: Response) {
+		const { uid } = req.params;
+
+		tasksRepository.delete(uid);
+
+		return res.status(200).json({
+			success: true,
+			message: 'Task deleted.',
+		} as IDefaultResponse);
+	}
 }
 
 const tasksController = new TasksController();

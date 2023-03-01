@@ -25,4 +25,6 @@ tasksRouter.put(
 
 tasksRouter.put('/task/archiving/:uid', tasksController.toggleTaskArchiving);
 
+tasksRouter.delete('/task/:uid', tasksController.delete);
+
 export default tasksRouter;

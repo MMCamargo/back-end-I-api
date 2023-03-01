@@ -79,6 +79,12 @@ class TasksRepository {
 				{ isArchived: !task.isArchived }
 			);
 	}
+
+	async delete(uid: string) {
+		const manager = pgHelper.client.manager;
+
+		manager.delete(TaskEntity, { uid });
+	}
 }
 
 const tasksRepository = new TasksRepository();
