@@ -39,11 +39,11 @@ class UsersRepository {
 	async verifyUniqueEmail(email: string): Promise<boolean> {
 		const manager = pgHelper.client.manager;
 
-		const someEqualEmail = await manager.findOne(UserEntity, {
+		const someEqualEmail = await manager.exists(UserEntity, {
 			where: { email },
 		});
 
-		return !!someEqualEmail;
+		return someEqualEmail;
 	}
 
 	async verifyUserCredentials(

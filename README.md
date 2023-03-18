@@ -42,7 +42,7 @@ npm install
 
 ## Usage
 
-You can access the live API [here](http://mm-back-end-i-api.vercel.app) or start the development server after installation:
+Start the development server after installation:
 
 ```bash
 npm run dev

@@ -15,12 +15,13 @@ abstract class BaseEntity {
 	createdAt!: Date;
 
 	@UpdateDateColumn({ name: 'updated_at' })
-	updatedAt!: Date;
+	updatedAt!: Date | null;
 
 	@BeforeInsert()
 	beforeInsert() {
 		this.uid = v4();
 		this.createdAt = new Date();
+		this.updatedAt = null;
 	}
 
 	@BeforeUpdate()
