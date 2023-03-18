@@ -15,7 +15,7 @@ This repository contains the back-end portion of a web application developed as 
 
 ## Description
 
-This repository houses the back-end of a web application developed as a requirement for the Back-end I module. The API has been designed to facilitate efficient consumption by the [front-end](https://github.com/mmcamargo/back-end-I) developed in parallel while maintaining well-structured code. Initially, the API doesn't rely on any database. However, in the Database I module, the project was refactored to be integrated with a Postgres database utilizing TypeORM.
+This repository houses the back-end of a web application developed as a requirement for the Back-end I module. The API has been designed to facilitate efficient consumption by the [front-end](https://github.com/mmcamargo/back-end-I) developed in parallel while maintaining well-structured code. Initially, the API doesn't rely on any database. However, in the Databases modules, the project was refactored to be integrated with a Postgres database utilizing TypeORM.
 
 ## Technologies
 
@@ -24,6 +24,7 @@ The technologies used in this project include:
 -   TypeScript
 -   Express
 -   TypeORM
+-   Postgres
 
 ## Installation
 
